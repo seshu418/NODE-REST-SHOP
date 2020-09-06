@@ -15,7 +15,6 @@ useUnifiedTopology: true
 });
 
 
-
 //Using morgon for logging
 app.use(morgon('dev'));
 
@@ -44,10 +43,10 @@ app.use('/orders', orderRoutes);
 //error handling
 app.use((req,res,next)=> {
     const error = new Error('Not found');
-    console.log(error.status)
-    console.log(error.message)
+    //console.log(error.status)
+    //console.log(error.message)
     error.status= 404;
-    console.log(error.message)
+    //console.log(error.message)
     next(error);
 });
 
@@ -55,12 +54,10 @@ app.use((error,req,res,next)=> {
     res.status(error.status || 500);
     res.json({
         error:{
-            message:error.message
+            message:'Route not found'
         }
     })
 
 });
-
-
 
 module.exports = app;
